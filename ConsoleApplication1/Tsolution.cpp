@@ -12,11 +12,12 @@ void Tsolution::prendreValeurs(Tsolution& autreSol)
 	setPere(autreSol.getPere());
 	setCheminCritique(autreSol.getCheminCritique());
 	coutSolution = autreSol.getCoutSolution();
+	probleme = autreSol.getProbleme();
 
 }
 
 
-int Tsolution::evaluer()
+void Tsolution::evaluer()
 {
 	int T[nmax][mmax];
 	int mOrdre[nmax][mmax];
@@ -124,14 +125,12 @@ int Tsolution::evaluer()
 	setCheminCritique(cheminCritique);
 
 	coutSolution = max;
-	return max;
 }
 
 /* La solution doit avoir ete evalue pour effectuer une recherche locale*/
 void Tsolution::rechercheLocale() {
 	int i, j, posi, posj, n = 1, cpt = 0;
 	int piecei, piecej;
-	int coutSol2;
 	int nbPassagePiece[TAILLEMAX];
 	int posPieceDansBirw[TAILLEMAX];
 	int * PERE = getPere();
@@ -161,9 +160,9 @@ void Tsolution::rechercheLocale() {
 			tmp = solution2.probleme.getVecteur()[posi]; //Permutation des operations i et j
 			solution2.probleme.getVecteur()[posi] = solution2.probleme.getVecteur()[posj];
 			solution2.probleme.getVecteur()[posj] = tmp;
-			coutSol2 = solution2.evaluer();
+			solution2.evaluer();
 
-			if (coutSol2 < coutSolution) { //Si le cout est inferieur
+			if (solution2.getCoutSolution() < coutSolution) { //Si le cout est inferieur
 				prendreValeurs(solution2); //La solution est changé
 
 				/* Reinitialisation des variables pour la recherche locale*/
@@ -220,6 +219,19 @@ void Tsolution::afficherSolution()
 	}
 	cout << endl;
 
+	//AFFICHAGE CHEMIN CRITIQUE
+	int i = 0;
+
+	cout << "\n[CHEMIN CRITIQUE] de la D vers la G : ";
+	while (cheminCritique[i] != -1) {
+		cout << cheminCritique[i] << " ";
+		i++;
+	}
+	cout << endl;
+
+	//AFFICHAGE DU COUT
+	cout << "\n[COUT] : " << coutSolution << endl;
+
 }
 
 int * Tsolution::getPere()
@@ -235,6 +247,11 @@ int * Tsolution::getES()
 int * Tsolution::getCheminCritique()
 {
 	return cheminCritique;
+}
+
+Tprobleme Tsolution::getProbleme()
+{
+	return probleme;
 }
 
 int Tsolution::getCoutSolution()

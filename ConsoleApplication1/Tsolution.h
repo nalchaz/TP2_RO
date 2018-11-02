@@ -17,7 +17,7 @@ private:
 public:
 	Tsolution(Tprobleme);
 	void prendreValeurs(Tsolution&);
-	int evaluer();
+	void evaluer();
 	void rechercheLocale();
 	void afficherSolution();
 
@@ -25,6 +25,7 @@ public:
 	int * getES();
 	int * getCheminCritique();
 	int getCoutSolution();
+	Tprobleme getProbleme();
 
 	void setCheminCritique(int *);
 	void setES(int *);

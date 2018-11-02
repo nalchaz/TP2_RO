@@ -20,10 +20,9 @@ int main() //args : array<System::String ^> ^args
 	
 	
 	uneSolution.evaluer();
-	std::cout << "APRES EVALUER :" << std::endl;
+	std::cout << "APRES EVALUER :" << std::endl; 
 
-	uneSolution.afficherSolution();
-	std::cout << "Le plus long chemin : " << uneSolution.getCoutSolution() << std::endl;
+	uneSolution.afficherSolution(); 
 	
 	std::cout << "\n\n\n*****************************************************************************************************\n\n" << std::endl;
 	
@@ -32,7 +31,6 @@ int main() //args : array<System::String ^> ^args
 	uneSolution.rechercheLocale();
 	uneSolution.afficherSolution();
 
-	std::cout << "Le plus long chemin : " << uneSolution.getCoutSolution() << std::endl;
 
     return 0;
 }
