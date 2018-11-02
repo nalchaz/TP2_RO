@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "Tsolution.h"
 
-Tsolution::Tsolution() {}
-
 Tsolution::Tsolution(Tprobleme prob):probleme(prob)
 {
 }

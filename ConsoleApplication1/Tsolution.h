@@ -15,7 +15,6 @@ private:
 	Tprobleme probleme;
 
 public:
-	Tsolution();
 	Tsolution(Tprobleme);
 	void prendreValeurs(Tsolution&);
 	void evaluer();

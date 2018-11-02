@@ -2,15 +2,14 @@
 #include "Tvecteur.h"
 #include "Tprobleme.h"
 #include "Tsolution.h"
-#include <functional>
-
+#include <map>
+#include <string> 
 
 
 class Tpopulation
 {
 
 public:
-	Tpopulation();
 	Tpopulation(char * nomFichier);
 	Tvecteur * getListe();
 	int coutListe[100];
@@ -19,7 +18,7 @@ public:
 
 private:
 	Tvecteur liste[100];
-	std::hash<int> tableHash;
+	std::map<std::string, int> tableHash;
 
 };
 

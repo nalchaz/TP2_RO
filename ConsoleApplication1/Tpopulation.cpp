@@ -1,18 +1,16 @@
 #include "stdafx.h"
 #include "Tpopulation.h"
 
-Tpopulation::Tpopulation() {}
-
 
 Tpopulation::Tpopulation(char * nomFichier)
 {
-	/*
+	
 	Tvecteur vecteur;
 
 	Tprobleme prob(nomFichier);
 	prob.lireFichier();
 
-	Tsolution S;
+	
 
 	int n = prob.getN();
 	int m = prob.getM();
@@ -28,14 +26,15 @@ Tpopulation::Tpopulation(char * nomFichier)
 
 	/** Tirage de 100 vecteurs différents au hasard **/
 	// Le 1er :
-	/*
+
 	vecteur.construireV(n, m);
 	liste[0] = vecteur;
 	prob.setVecteur(liste[0]);
-	S.getProbleme = prob;
-	coutListe[0] = S.getCoutSolution;
-	//  A FAIRE : le rentrer dans la table de hachage
-
+	Tsolution S(prob);
+	coutListe[0] = S.getCoutSolution();
+	
+	tableHash[hashVecteur(vecteur)] = 1; //Insertion dans la table de hashage
+/*
 	for (int i = 1; i < 100; i++) {
 		do {
 			vecteur.construireV(n, m);
@@ -67,11 +66,10 @@ Tpopulation::Tpopulation(char * nomFichier)
 		coutListe[debutDicho] = coutTps;
 		liste[debutDicho] = vecTps;
 	}
-
-	*/
+*/
+	
 
 }
-
 
 Tvecteur * Tpopulation::getListe()
 {
@@ -81,5 +79,18 @@ Tvecteur * Tpopulation::getListe()
 
 void Tpopulation::genetique(int r)
 {
+
+}
+
+string hashVecteur(Tvecteur vecteur) {
+	std::string tmp = "";
+	int * vec = vecteur.getVecteur();
+	int taille = vecteur.getTailleVecteur();
+
+	for (int i = 0; i < taille; i++) {
+		tmp += std::to_string(vec[i]);
+	}
+
+	return tmp;
 
 }
