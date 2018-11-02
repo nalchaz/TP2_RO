@@ -58,9 +58,7 @@ void Tprobleme::afficherProbleme()
 
 	Console::WriteLine("[Vecteur de Bierwith] :\n");
 	for (int i = 0; i < n*m; i++) {
-		if (i % 3 == 0)
-			Console::Write(" | ");
-		Console::Write(vecteur.getVecteur()[i]+1 + " "); //Afichage de P sur la console
+		Console::Write(vecteur.getVecteur()[i]+1 + "\t"); //Afichage de P sur la console
 	}
 	cout << endl;
 

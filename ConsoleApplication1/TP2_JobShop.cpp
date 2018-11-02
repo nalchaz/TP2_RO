@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include "Tprobleme.h"
 #include "Tsolution.h"
+#include <iostream>
 
 
 using namespace System;
@@ -21,6 +22,9 @@ int main() //args : array<System::String ^> ^args
 
 	S = uneSolution.evaluer();
 	uneSolution.afficherSolution();
+
+	std::cout << std::endl;
+	std::cout << "Le plus long chemin : " << S << std::endl;
 
 	/*
 	Tvecteur vecTest;
