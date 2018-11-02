@@ -26,7 +26,7 @@ int main() //args : array<System::String ^> ^args
 	
 	std::cout << "\n\n\n*****************************************************************************************************\n\n" << std::endl;
 	
-	std::cout << "APRES RECHERCHE LOCAL :" << std::endl;
+	std::cout << "APRES RECHERCHE LOCALE :" << std::endl;
 
 	uneSolution.rechercheLocale();
 	uneSolution.afficherSolution();

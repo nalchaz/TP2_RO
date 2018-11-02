@@ -19,7 +19,7 @@ public:
 
 private:
 	Tvecteur liste[100];
-	//std::hash<Tvecteur> tableHash;
+	std::hash<int> tableHash;
 
 };
 
