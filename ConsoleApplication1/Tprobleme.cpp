@@ -64,6 +64,12 @@ void Tprobleme::afficherProbleme()
 
 }
 
+int Tprobleme::trouveriEmeApparitionVecteur(int numPiece, int i)
+{
+
+	return vecteur.trouveriEmeApparition(numPiece, i);
+}
+
 
 
 int Tprobleme::getM()

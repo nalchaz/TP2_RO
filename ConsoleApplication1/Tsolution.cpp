@@ -6,6 +6,15 @@ Tsolution::Tsolution(Tprobleme prob):probleme(prob)
 {
 }
 
+void Tsolution::prendreValeurs(Tsolution& autreSol)
+{
+	setES(autreSol.getES());
+	setPere(autreSol.getPere());
+	setCheminCritique(autreSol.getCheminCritique());
+	coutSolution = autreSol.getCoutSolution();
+
+}
+
 
 int Tsolution::evaluer()
 {
@@ -25,8 +34,7 @@ int Tsolution::evaluer()
 	int p;
 	int position;
 	int pereCour;
-	int cheminCritique[30 * 30];
-
+	int cheminCritique[TAILLEMAX * TAILLEMAX];
 	/* Initialisation */
 
 	P = probleme.getPoids();
@@ -50,7 +58,6 @@ int Tsolution::evaluer()
 
 	for (int i = 0; i < probleme.getM(); i++) {
 		m[i] = -1;
-		cheminCritique[i] = -1;
 	}
 
 	for (int i = 0; i < probleme.getN(); i++) {
@@ -111,28 +118,78 @@ int Tsolution::evaluer()
 	for (cpt = 1; PERE[pereCour] != -1; cpt++) {
 		pereCour = PERE[pereCour];
 		cheminCritique[cpt] = pereCour;
-	}
-	setCheminCritique(cheminCritique, cpt);
 
+	}
+	cheminCritique[cpt] = -1;
+	setCheminCritique(cheminCritique);
+
+	coutSolution = max;
 	return max;
 }
 
+/* La solution doit avoir ete evalue pour effectuer une recherche locale*/
 void Tsolution::rechercheLocale() {
-	int i, j, n;
-	int cout;
+	int i, j, posi, posj, n = 1, cpt = 0;
+	int piecei, piecej;
+	int coutSol2;
+	int nbPassagePiece[TAILLEMAX];
+	int posPieceDansBirw[TAILLEMAX];
 	int * PERE = getPere();
+	int nbMachine = probleme.getM();
+	int tmp;
+
 	Tsolution solution2(probleme);
 
-	n = cheminCritique[0];
-	cout = evaluer();
-	i = n;
-	j = PERE[i];
+	i = cheminCritique[0];
+	j = cheminCritique[1];
 	
-	while ((j != -1) && (n < probleme.getM() * probleme.getN())) {
+	for (int k = 0; k < probleme.getN(); k++) {
+		nbPassagePiece[k] = nbMachine;
+		posPieceDansBirw[k] = probleme.trouveriEmeApparitionVecteur(k, nbMachine);
+	}
 
-		if (probleme.getVecteur()[i] != probleme.getVecteur()[j]) { //i et j font ref à des pieces differentes;
+	 
+	while ((j != -1) && (cpt < probleme.getM() * probleme.getN())) {
+		piecei = i / nbMachine;
+		piecej = j / nbMachine;
+		if (piecei != piecej) { //i et j font ref à des pieces differentes;
+			posi = posPieceDansBirw[piecei];
+			posj = posPieceDansBirw[piecej];
+			nbPassagePiece[piecei]--;
+			posPieceDansBirw[piecei] = probleme.trouveriEmeApparitionVecteur(piecei, nbPassagePiece[piecei]);
+			
+			tmp = solution2.probleme.getVecteur()[posi]; //Permutation des operations i et j
+			solution2.probleme.getVecteur()[posi] = solution2.probleme.getVecteur()[posj];
+			solution2.probleme.getVecteur()[posj] = tmp;
+			coutSol2 = solution2.evaluer();
 
+			if (coutSol2 < coutSolution) { //Si le cout est inferieur
+				prendreValeurs(solution2); //La solution est changé
+
+				/* Reinitialisation des variables pour la recherche locale*/
+
+				i = cheminCritique[0];
+				j = cheminCritique[1];
+				n = 1;
+				for (int k = 0; k < probleme.getN(); k++) {
+					nbPassagePiece[k] = nbMachine;
+					posPieceDansBirw[k] = probleme.trouveriEmeApparitionVecteur(k, nbMachine);
+				}
+			}
+			else
+			{
+				n++;
+				i = j;
+				j = cheminCritique[n];
+			}
 		}
+		else
+		{
+			n++;
+			i = j;
+			j = cheminCritique[n];
+		}
+		cpt++;
 	}
 	
 }
@@ -170,10 +227,38 @@ int * Tsolution::getPere()
 	return PERE;
 }
 
-void Tsolution::setCheminCritique(int * chemin, int taille)
+int * Tsolution::getES()
 {
-	for (int i = 0; i < taille; i++) {
+	return ES;
+}
+
+int * Tsolution::getCheminCritique()
+{
+	return cheminCritique;
+}
+
+int Tsolution::getCoutSolution()
+{
+	return coutSolution;
+}
+
+void Tsolution::setCheminCritique(int * chemin)
+{
+	for (int i = 0; i < TAILLEMAX-1; i++) {
 		cheminCritique[i] = chemin[i];
 	}
 }
 
+void Tsolution::setES(int * ESaCopier)
+{
+	for (int i = 0; i < TAILLEMAX-1; i++) {
+		ES[i] = ESaCopier[i];
+	}
+}
+
+void Tsolution::setPere(int * PereACopier)
+{
+	for (int i = 0; i < TAILLEMAX-1; i++) {
+		PERE[i] = PereACopier[i];
+	}
+}

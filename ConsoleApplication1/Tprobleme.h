@@ -26,7 +26,7 @@ public:
 	void lireFichier();
 	void construireVecteur();
 	void afficherProbleme();
-
+	int trouveriEmeApparitionVecteur(int, int);
 	int getM();
 	int getN();
 	

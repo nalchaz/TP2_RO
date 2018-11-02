@@ -39,6 +39,19 @@ void Tvecteur::construireV(int n, int m) {
 
 }
 
+int Tvecteur::trouveriEmeApparition(int numPiece, int i) {
+	int cpt = 0;
+	int y = 0;
+
+	for (y = 0; cpt != i; y++) {
+		if (V[y] == numPiece)
+			cpt++;
+	}
+
+	return y-1;
+
+}
+
 int * Tvecteur::getVecteur()
 {
 	return V;
