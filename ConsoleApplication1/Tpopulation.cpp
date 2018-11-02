@@ -6,6 +6,7 @@ Tpopulation::Tpopulation() {}
 
 Tpopulation::Tpopulation(char * nomFichier)
 {
+	/*
 	Tvecteur vecteur;
 
 	Tprobleme prob(nomFichier);
@@ -23,30 +24,34 @@ Tpopulation::Tpopulation(char * nomFichier)
 	Tvecteur vecTps;
 	int coutTps;
 
+	
+
 	/** Tirage de 100 vecteurs différents au hasard **/
 	// Le 1er :
+	/*
 	vecteur.construireV(n, m);
 	liste[0] = vecteur;
 	prob.setVecteur(liste[0]);
 	S.getProbleme = prob;
-	coutListe[0] = S.evaluer();
+	coutListe[0] = S.getCoutSolution;
 	//  A FAIRE : le rentrer dans la table de hachage
 
 	for (int i = 1; i < 100; i++) {
 		do {
 			vecteur.construireV(n, m);
-		} while (tableHash[vecteur] == 1); // A FAIRE
+		} while ( == 1); // A FAIRE : voir sil existe déjà -> créer Tester_Double ?
 
 		vecTps = vecteur;
 
 
 		/** Calcul du coût **/
-
+	/*
 		prob.setVecteur(liste[i]);
 		S.getProbleme = prob;
 		coutTps = S.evaluer();
 
 		/** Insertion par dichotomie **/
+	/*
 		debutDicho = 0;
 		finDicho = i;
 		while (debutDicho < finDicho) {
@@ -63,7 +68,7 @@ Tpopulation::Tpopulation(char * nomFichier)
 		liste[debutDicho] = vecTps;
 	}
 
-
+	*/
 
 }
 
