@@ -50,6 +50,7 @@ int Tsolution::evaluer()
 
 	for (int i = 0; i < probleme.getM(); i++) {
 		m[i] = -1;
+		cheminCritique[i] = -1;
 	}
 
 	for (int i = 0; i < probleme.getN(); i++) {
@@ -97,7 +98,7 @@ int Tsolution::evaluer()
 	p = 1; // p et k sont des compteurs pour calculer les dates de fin des pièces 1 à NbPièce-1
 	k = (probleme.getM() - 1) + probleme.getM();
 
-
+	pereCour = k;
 	while (p <= probleme.getN()) {
 		if (ES[k] + P[p][probleme.getM()-1] > max) {
 			max = ES[k] + P[p][probleme.getM() - 1];
@@ -117,18 +118,22 @@ int Tsolution::evaluer()
 }
 
 void Tsolution::rechercheLocale() {
-	int i, j, n = 0;
+	int i, j, n;
 	int cout;
 	int * PERE = getPere();
+	Tsolution solution2(probleme);
 
+	n = cheminCritique[0];
 	cout = evaluer();
 	i = n;
 	j = PERE[i];
+	
+	while ((j != -1) && (n < probleme.getM() * probleme.getN())) {
 
-	//while ((j != -1) && (n < probleme.getM() * probleme.getN())) {
+		if (probleme.getVecteur()[i] != probleme.getVecteur()[j]) { //i et j font ref à des pieces differentes;
 
-		//if() //i et j font ref à des pieces differentes;
-	//}
+		}
+	}
 	
 }
 
