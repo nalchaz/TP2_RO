@@ -4,20 +4,25 @@
 #include "Tsolution.h"
 #include <map>
 #include <string> 
-
+#define TAILLEPOP 10
 
 class Tpopulation
 {
 
 public:
-	Tpopulation(char * nomFichier);
+	Tpopulation();
 	Tvecteur * getListe();
-	int coutListe[100];
-	void genetique(int);
+	void genererPopulation(char *);
+	void genererFils();
+	
+	void afficherPopulation(ostream&);
+
+	bool testerDouble(Tvecteur);
 
 
 private:
-	Tvecteur liste[100];
+	int coutListe[TAILLEPOP];
+	Tvecteur liste[TAILLEPOP];
 	std::map<std::string, int> tableHash;
 
 };

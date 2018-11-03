@@ -127,7 +127,7 @@ void Tsolution::evaluer()
 }
 
 /* La solution doit avoir ete evalue pour effectuer une recherche locale*/
-void Tsolution::rechercheLocale() {
+Tvecteur Tsolution::rechercheLocale() {
 	int i, j, posi, posj, n = 1, cpt = 0;
 	int piecei, piecej;
 	int nbPassagePiece[TAILLEMAX];
@@ -189,47 +189,47 @@ void Tsolution::rechercheLocale() {
 		}
 		cpt++;
 	}
-	
+	return probleme.getVecteurObj();
 }
 
-void Tsolution::afficherSolution()
+void Tsolution::afficherSolution(ostream& flux)
 {
 	//AFFICHAGE ES
 	int cpt = 0;
-	cout << "\n[ES] : ";
+	flux << "\n[ES] : ";
 	for (int i = 0; i < probleme.getN(); i++) {
 		for (int j = 0; j < probleme.getM(); j++) {
-			cout << ES[cpt] << " ";
+			flux << ES[cpt] << " ";
 			cpt++;
 		}
-		cout << " | ";
+		flux << " | ";
 	}
-	cout << endl;
+	flux << endl;
 
 	cpt = 0;
 	//AFFICHAGE PERE
-	cout << "\n[PERE] : ";
+	flux << "\n[PERE] : ";
 	for (int i = 0; i < probleme.getN(); i++) {
 		for (int j = 0; j < probleme.getM(); j++) {
-			cout << PERE[cpt] << " ";
+			flux << PERE[cpt] << " ";
 			cpt++;
 		}
-		cout << " | ";
+		flux << " | ";
 	}
-	cout << endl;
+	flux << endl;
 
 	//AFFICHAGE CHEMIN CRITIQUE
 	int i = 0;
 
-	cout << "\n[CHEMIN CRITIQUE] de la D vers la G : ";
+	flux << "\n[CHEMIN CRITIQUE] de la D vers la G : ";
 	while (cheminCritique[i] != -1) {
-		cout << cheminCritique[i] << " ";
+		flux << cheminCritique[i] << " ";
 		i++;
 	}
-	cout << endl;
+	flux << endl;
 
 	//AFFICHAGE DU COUT
-	cout << "\n[COUT] : " << coutSolution << endl;
+	flux << "\n[COUT] : " << coutSolution << endl;
 
 }
 

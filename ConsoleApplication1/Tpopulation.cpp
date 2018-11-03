@@ -2,15 +2,15 @@
 #include "Tpopulation.h"
 
 
-Tpopulation::Tpopulation(char * nomFichier)
+Tpopulation::Tpopulation(){}
+
+void Tpopulation::genererPopulation(char * nomFichier)
 {
-	
+
 	Tvecteur vecteur;
 
 	Tprobleme prob(nomFichier);
 	prob.lireFichier();
-
-	
 
 	int n = prob.getN();
 	int m = prob.getM();
@@ -19,43 +19,46 @@ Tpopulation::Tpopulation(char * nomFichier)
 	int finDicho;
 	int milieu;
 
-	Tvecteur vecTps;
-	int coutTps;
-
-	
+	int coutTmp;
 
 	/** Tirage de 100 vecteurs différents au hasard **/
 	// Le 1er :
 
 	vecteur.construireV(n, m);
 	liste[0] = vecteur;
-	prob.setVecteur(liste[0]);
+	prob.setVecteur(vecteur);
 	Tsolution S(prob);
+	S.evaluer();
+	vecteur = S.rechercheLocale();
+	liste[0] = vecteur;
 	coutListe[0] = S.getCoutSolution();
-	
-	tableHash[hashVecteur(vecteur)] = 1; //Insertion dans la table de hashage
-/*
-	for (int i = 1; i < 100; i++) {
+
+	tableHash[vecteur.toString()] = 1; //Insertion dans la table de hashage
+
+	//Tirage des autres
+	for (int i = 1; i < TAILLEPOP; i++) {
 		do {
 			vecteur.construireV(n, m);
-		} while ( == 1); // A FAIRE : voir sil existe déjà -> créer Tester_Double ?
+		} while (testerDouble(vecteur)); //On construit un vecteur tant qu'il a un doublon dans la population
 
-		vecTps = vecteur;
+		//Calcul du cout :
+		//liste[i] = vecteur;
 
+		prob.setVecteur(vecteur);
+		Tsolution S(prob);
+		S.evaluer();
+		vecteur = S.rechercheLocale();
+		coutTmp = S.getCoutSolution();
 
-		/** Calcul du coût **/
-	/*
-		prob.setVecteur(liste[i]);
-		S.getProbleme = prob;
-		coutTps = S.evaluer();
+		tableHash[vecteur.toString()] = 1; //Insertion dasn la table de hachage
 
 		/** Insertion par dichotomie **/
-	/*
+
 		debutDicho = 0;
 		finDicho = i;
 		while (debutDicho < finDicho) {
 			milieu = (debutDicho + finDicho) / 2;
-			if (coutTps <= coutListe[m]) finDicho = milieu;
+			if (coutTmp <= coutListe[m]) finDicho = milieu;
 			else debutDicho = milieu + 1;
 		}
 		//décalage à droite
@@ -63,34 +66,36 @@ Tpopulation::Tpopulation(char * nomFichier)
 			coutListe[k] = coutListe[k - 1];
 			liste[k] = liste[k - 1];
 		}
-		coutListe[debutDicho] = coutTps;
-		liste[debutDicho] = vecTps;
+		coutListe[debutDicho] = coutTmp;
+		liste[debutDicho] = vecteur;
 	}
-*/
-	
+	int test = 0;
+}
+
+void Tpopulation::genererFils() {
 
 }
 
+void Tpopulation::afficherPopulation(ostream& flux) {
+	flux << "[Vecteur Birwirth]\t[cout]\n" << std::endl;
+	for (int i = 0; i < TAILLEPOP; i++) {
+		flux << liste[i].toString() << "\t" << coutListe[i] << std::endl;
+	}
+
+}
 Tvecteur * Tpopulation::getListe()
 {
 	return liste;
 }
 
-
-void Tpopulation::genetique(int r)
-{
-
-}
-
-string hashVecteur(Tvecteur vecteur) {
-	std::string tmp = "";
-	int * vec = vecteur.getVecteur();
-	int taille = vecteur.getTailleVecteur();
-
-	for (int i = 0; i < taille; i++) {
-		tmp += std::to_string(vec[i]);
-	}
-
-	return tmp;
+/* testerDouble
+@return : bool, true si il existe deja dans la population
+				false sinon
+*/
+bool Tpopulation::testerDouble(Tvecteur vec) {
+	bool test = tableHash[vec.toString()];
+	return test;
 
 }
+
+

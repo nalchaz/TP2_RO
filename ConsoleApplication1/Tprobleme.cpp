@@ -135,4 +135,9 @@ int** Tprobleme::getPoids()
 	return poidsCopie;
 }
 
+Tvecteur Tprobleme::getVecteurObj()
+{
+	return vecteur;
+}
+
 

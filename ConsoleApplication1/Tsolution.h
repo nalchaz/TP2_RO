@@ -18,8 +18,8 @@ public:
 	Tsolution(Tprobleme);
 	void prendreValeurs(Tsolution&);
 	void evaluer();
-	void rechercheLocale();
-	void afficherSolution();
+	Tvecteur rechercheLocale();
+	void afficherSolution(ostream&);
 
 	int * getPere();
 	int * getES();

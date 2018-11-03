@@ -1,5 +1,5 @@
 #pragma once
-
+#include <string>
 const int vmax = 30 * 30;
 
 class Tvecteur
@@ -16,5 +16,6 @@ public:
 	int * getVecteur();
 	int getTailleVecteur();
 	void setListe(int[vmax]);
+	std::string toString();
 };
 

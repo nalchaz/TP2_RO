@@ -72,3 +72,14 @@ void Tvecteur::setListe(int vec[vmax])
 		i++;
 	}
 }
+
+std::string Tvecteur::toString()
+{
+	std::string tmp = "";
+
+	for (int i = 0; i < tailleVecteur; i++) {
+		tmp += std::to_string(V[i]);
+	}
+
+	return tmp;
+}

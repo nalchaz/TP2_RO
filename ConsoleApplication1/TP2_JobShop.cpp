@@ -8,9 +8,11 @@
 
 
 using namespace System;
+using namespace std;
 
-int main() //args : array<System::String ^> ^args
-{
+
+void testEvaluerEtRechercheLocale() {
+
 	Tprobleme prob("ft06.txt");
 	Tvecteur vect;
 	//int vec[900] = { 5, 5, 4, 4, 5, 4, 0, 0, 4, 2, 5, 5, 1, 3, 1, 5, 0, 2, 2, 1, 1, 4, 2, 3, 2, 2, 1, 0, 4, 3, 3, 0, 3, 0, 1, 3 };
@@ -19,20 +21,33 @@ int main() //args : array<System::String ^> ^args
 	prob.construireVecteur();
 	prob.afficherProbleme();
 	Tsolution uneSolution(prob);
-	
-	
-	uneSolution.evaluer();
-	std::cout << "APRES EVALUER :" << std::endl; 
 
-	uneSolution.afficherSolution(); 
-	
+
+	uneSolution.evaluer();
+	std::cout << "APRES EVALUER :" << std::endl;
+
+	uneSolution.afficherSolution(cout);
+
 	std::cout << "\n\n\n*****************************************************************************************************\n\n" << std::endl;
-	
+
 	std::cout << "APRES RECHERCHE LOCALE :" << std::endl;
 
 	uneSolution.rechercheLocale();
-	uneSolution.afficherSolution();
+	uneSolution.afficherSolution(cout);
 
+}
 
-    return 0;
+void testGenererPopulation() {
+
+	Tpopulation population;
+	population.genererPopulation("ft06.txt");
+	population.afficherPopulation(cout);
+}
+
+int main() //args : array<System::String ^> ^args
+{
+	//testEvaluerEtRechercheLocale();
+	testGenererPopulation();
+
+	return 0;
 }
