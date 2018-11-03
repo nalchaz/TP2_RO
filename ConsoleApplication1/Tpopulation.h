@@ -2,7 +2,7 @@
 #include "Tvecteur.h"
 #include "Tprobleme.h"
 #include "Tsolution.h"
-#include <map>
+#include <unordered_map>
 #include <string> 
 #define TAILLEPOP 10
 
@@ -23,7 +23,7 @@ public:
 private:
 	int coutListe[TAILLEPOP];
 	Tvecteur liste[TAILLEPOP];
-	std::map<std::string, int> tableHash;
+	std::unordered_map<std::string, int> tableHash;
 
 };
 

@@ -43,7 +43,7 @@ void Tprobleme::afficherProbleme()
 	Console::WriteLine("[mach] :\n");
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
-			Console::Write(mach[i][j]+1 + "\t"); //Afichage de M sur la console
+			Console::Write(mach[i][j]+1 + "\t"); //Affichage de M sur la console
 		}
 		Console::Write("\n");
 	}
@@ -51,14 +51,14 @@ void Tprobleme::afficherProbleme()
 	Console::WriteLine("[poids] :\n");
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
-			Console::Write(poids[i][j]+ "\t"); //Afichage de P sur la console
+			Console::Write(poids[i][j]+ "\t"); //Affichage de P sur la console
 		}
 		Console::Write("\n");
 	}
 
-	Console::WriteLine("[Vecteur de Bierwith] :\n");
+	Console::WriteLine("[Vecteur de Bierwirth] :\n");
 	for (int i = 0; i < n*m; i++) {
-		Console::Write(vecteur.getVecteur()[i]+1 + "\t"); //Afichage de P sur la console
+		Console::Write(vecteur.getVecteur()[i]+1 + "\t"); //Affichage de V sur la console
 	}
 	cout << endl;
 

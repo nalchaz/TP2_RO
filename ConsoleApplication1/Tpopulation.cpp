@@ -33,7 +33,7 @@ void Tpopulation::genererPopulation(char * nomFichier)
 	liste[0] = vecteur;
 	coutListe[0] = S.getCoutSolution();
 
-	tableHash[vecteur.toString()] = 1; //Insertion dans la table de hashage
+	tableHash.insert({ vecteur.toString(), 1 }); //Insertion dans la table de hashage
 
 	//Tirage des autres
 	for (int i = 1; i < TAILLEPOP; i++) {
@@ -50,7 +50,7 @@ void Tpopulation::genererPopulation(char * nomFichier)
 		vecteur = S.rechercheLocale();
 		coutTmp = S.getCoutSolution();
 
-		tableHash[vecteur.toString()] = 1; //Insertion dasn la table de hachage
+		tableHash.insert({vecteur.toString(), 1}); //Insertion dasn la table de hachage
 
 		/** Insertion par dichotomie **/
 
@@ -77,7 +77,7 @@ void Tpopulation::genererFils() {
 }
 
 void Tpopulation::afficherPopulation(ostream& flux) {
-	flux << "[Vecteur Birwirth]\t[cout]\n" << std::endl;
+	flux << "[Vecteur Bierwirth]\t\t\t[cout]\n" << std::endl;
 	for (int i = 0; i < TAILLEPOP; i++) {
 		flux << liste[i].toString() << "\t" << coutListe[i] << std::endl;
 	}
@@ -93,9 +93,9 @@ Tvecteur * Tpopulation::getListe()
 				false sinon
 */
 bool Tpopulation::testerDouble(Tvecteur vec) {
-	bool test = tableHash[vec.toString()];
-	return test;
-
+	std::unordered_map<std::string, int>::iterator it;
+	it = tableHash.find(vec.toString());
+	return it != tableHash.end();
 }
 
 

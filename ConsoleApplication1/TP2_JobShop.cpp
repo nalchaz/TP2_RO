@@ -5,13 +5,15 @@
 #include "Tsolution.h"
 #include "Tpopulation.h"
 #include <iostream>
-
+#include <ctime>
 
 using namespace System;
 using namespace std;
 
 
 void testEvaluerEtRechercheLocale() {
+
+	srand(time(NULL)); // initialisation de rand
 
 	Tprobleme prob("ft06.txt");
 	Tvecteur vect;
@@ -38,6 +40,8 @@ void testEvaluerEtRechercheLocale() {
 }
 
 void testGenererPopulation() {
+
+	srand(time(NULL)); // initialisation de rand
 
 	Tpopulation population;
 	population.genererPopulation("ft06.txt");

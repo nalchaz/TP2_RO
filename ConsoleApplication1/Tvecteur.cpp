@@ -15,7 +15,6 @@ void Tvecteur::construireV(int n, int m) {
 	int tailleReelle = n;
 
 	tailleVecteur = n*m;
-	srand(time(NULL)); // initialisation de rand
 
 	for (int i = 0; i < n; i++) {
 		decompteRessources[i][0] = m;
