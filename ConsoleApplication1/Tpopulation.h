@@ -3,6 +3,7 @@
 #include "Tprobleme.h"
 #include "Tsolution.h"
 #include <unordered_map>
+#include <sstream>
 #include <string> 
 #include <ctime>
 #define TAILLEPOP 20
@@ -25,6 +26,8 @@ public:
 	void ecraserElem(int);
 	
 	void afficherPopulation(ostream&);
+
+	string toString();
 
 	bool testerDouble(Tvecteur);
 

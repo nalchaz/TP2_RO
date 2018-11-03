@@ -1,6 +1,9 @@
 #pragma once
 #include "Tprobleme.h"
 #include <iostream>
+#include <string>
+#include <sstream>
+
 using namespace std;
 
 class Tsolution
@@ -19,6 +22,7 @@ public:
 	void evaluer();
 	Tvecteur rechercheLocale();
 	void afficherSolution(ostream&);
+	string toString();
 
 	int * getPere();
 	int * getES();

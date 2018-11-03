@@ -2,6 +2,9 @@
 #include "Tvecteur.h"
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <sstream>
+
 #define TAILLENETMMAX 30
 using namespace std;
 
@@ -22,7 +25,8 @@ public:
 	Tprobleme(string);
 	void lireFichier();
 	void construireVecteur();
-	void afficherProbleme();
+	void afficherProbleme(ostream&);
+	string toString();
 	int trouveriEmeApparitionVecteur(int, int);
 	int getM();
 	int getN();

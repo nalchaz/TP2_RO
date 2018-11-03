@@ -38,30 +38,36 @@ void Tprobleme::construireVecteur() //Pourrait etre inclus dans le constructeur
 	vecteur.construireV(n, m);
 }
 
-void Tprobleme::afficherProbleme()
+void Tprobleme::afficherProbleme(ostream& flux)
 {
-	Console::WriteLine("[mach] :\n");
+	flux << "[mach] :\n" << endl;
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
-			Console::Write(mach[i][j]+1 + "\t"); //Affichage de M sur la console
+			flux << mach[i][j] << "\t"; //Affichage de M
 		}
-		Console::Write("\n");
+		flux << endl;
 	}
 
-	Console::WriteLine("[poids] :\n");
+	flux << "[poids] :\n" << endl;
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
-			Console::Write(poids[i][j]+ "\t"); //Affichage de P sur la console
+			flux << poids[i][j] << "\t"; //Affichage de P
 		}
-		Console::Write("\n");
+		flux << endl;
 	}
 
-	Console::WriteLine("[Vecteur de Bierwirth] :\n");
+	flux << "[Vecteur de Bierwirth] :\n" << endl;
 	for (int i = 0; i < n*m; i++) {
-		Console::Write(vecteur.getVecteur()[i]+1 + "\t"); //Affichage de V sur la console
+		flux << vecteur.getVecteur()[i]+1 << "\t"; //Affichage de V
 	}
-	cout << endl;
+	flux << endl;
 
+}
+
+string Tprobleme::toString() {
+	std::stringstream ss;
+	afficherProbleme(ss);
+	return ss.str();
 }
 
 int Tprobleme::trouveriEmeApparitionVecteur(int numPiece, int i)

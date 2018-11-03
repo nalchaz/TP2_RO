@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Tpopulation.h"
 
-
 Tpopulation::Tpopulation(char * nomFic):probleme(Tprobleme(nomFic)){
 	probleme.lireFichier();
 }
@@ -13,10 +12,6 @@ void Tpopulation::genererPopulation()
 
 	n = probleme.getN();
 	m = probleme.getM();
-
-	int debutDicho;
-	int finDicho;
-	int milieu;
 
 	int coutTmp;
 
@@ -160,6 +155,13 @@ void Tpopulation::afficherPopulation(ostream& flux) {
 	}
 
 }
+
+string Tpopulation::toString() {
+	std::stringstream ss;
+	afficherPopulation(ss);
+	return ss.str();
+}
+
 Tvecteur * Tpopulation::getListe()
 {
 	return liste;

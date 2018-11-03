@@ -1,6 +1,7 @@
 // TP2_JobShop.cpp : fichier projet principal.
 
 #include "stdafx.h"
+#include "MyForm.h"
 #include "Tprobleme.h"
 #include "Tsolution.h"
 #include "Tpopulation.h"
@@ -8,7 +9,7 @@
 #include <ctime>
 
 using namespace System;
-using namespace std;
+using namespace System::Windows::Forms;
 
 
 void testEvaluerEtRechercheLocale() {
@@ -21,21 +22,21 @@ void testEvaluerEtRechercheLocale() {
 	prob.lireFichier();
 	//prob.setVecteur(vec);
 	prob.construireVecteur();
-	prob.afficherProbleme();
+	prob.afficherProbleme(std::cout);
 	Tsolution uneSolution(prob);
 
 
 	uneSolution.evaluer();
 	std::cout << "APRES EVALUER :" << std::endl;
 
-	uneSolution.afficherSolution(cout);
+	uneSolution.afficherSolution(std::cout);
 
 	std::cout << "\n\n\n*****************************************************************************************************\n\n" << std::endl;
 
 	std::cout << "APRES RECHERCHE LOCALE :" << std::endl;
 
 	uneSolution.rechercheLocale();
-	uneSolution.afficherSolution(cout);
+	uneSolution.afficherSolution(std::cout);
 
 }
 
@@ -45,7 +46,7 @@ void testGenererPopulation() {
 
 	Tpopulation population("ft06.txt");
 	population.genererPopulation();
-	population.afficherPopulation(cout);
+	population.afficherPopulation(std::cout);
 }
 
 void testGenererFils() {
@@ -55,19 +56,19 @@ void testGenererFils() {
 	Tpopulation population("ft06.txt");
 	population.genererPopulation();
 
-	cout << "POPULATION AVANT L'ALGORITHME GENETIQUE\n" << endl;
-	population.afficherPopulation(cout);
+	std::cout << "POPULATION AVANT L'ALGORITHME GENETIQUE\n" << std::endl;
+	population.afficherPopulation(std::cout);
 
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 20; i++) {
 		population.genererFils();
 	}
-	cout << "\n\nPOPULATION APRES L'ALGORITHME GENETIQUE\n" << endl;
-	population.afficherPopulation(cout);
+	std::cout << "\n\nPOPULATION APRES L'ALGORITHME GENETIQUE\n" << std::endl;
+	population.afficherPopulation(std::cout);
 
 	
 }
 
-int main() //args : array<System::String ^> ^args
+int main() 
 {
 	//testEvaluerEtRechercheLocale();
 	//testGenererPopulation();
@@ -75,3 +76,22 @@ int main() //args : array<System::String ^> ^args
 
 	return 0;
 }
+
+/*   POUR L'IHM, DUR A FAIRE FONCTIONNER
+
+int main(cli::array<System::String ^> ^args)
+{
+	//testEvaluerEtRechercheLocale();
+	//testGenererPopulation();
+	//testGenererFils();
+
+	Application::EnableVisualStyles();
+	Application::SetCompatibleTextRenderingDefault(false);
+
+	ConsoleApplication1::MyForm main_form;
+
+	Application::Run(%main_form);
+
+	return 0;
+}
+*/

@@ -234,6 +234,14 @@ void Tsolution::afficherSolution(ostream& flux)
 
 }
 
+string Tsolution::toString()
+{
+	std::stringstream ss;
+	afficherSolution(ss);
+	return ss.str();
+
+}
+
 int * Tsolution::getPere()
 {
 	return PERE;
