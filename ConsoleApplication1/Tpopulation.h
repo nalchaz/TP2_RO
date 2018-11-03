@@ -4,7 +4,7 @@
 #include "Tsolution.h"
 #include <unordered_map>
 #include <string> 
-#define TAILLEPOP 10
+#define TAILLEPOP 100
 
 class Tpopulation
 {

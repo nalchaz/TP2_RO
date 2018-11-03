@@ -58,8 +58,10 @@ void Tpopulation::genererPopulation(char * nomFichier)
 		finDicho = i;
 		while (debutDicho < finDicho) {
 			milieu = (debutDicho + finDicho) / 2;
-			if (coutTmp <= coutListe[m]) finDicho = milieu;
-			else debutDicho = milieu + 1;
+			if (coutTmp <= coutListe[milieu]) 
+				finDicho = milieu;
+			else 
+				debutDicho = milieu + 1;
 		}
 		//décalage à droite
 		for (int k = i; k > debutDicho; k--) { // on part de la droite -> gauche
