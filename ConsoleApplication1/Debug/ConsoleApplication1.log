@@ -1,8 +1,4 @@
-﻿  TP2_JobShop.cpp
-TP2_JobShop.cpp(16): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
-TP2_JobShop.cpp(44): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
-  Tpopulation.cpp
-  Génération de code en cours...
+﻿  Tsolution.cpp
   AssemblyInfo.obj : /DEBUG:FASTLINK n'est pas pris en charge en présence de code managé ; redémarrage de l'édition des liens avec /DEBUG:FULL
   ConsoleApplication1.vcxproj -> C:\Users\DELL\Documents\Cours\RO\TP2_RO\Debug\TP2_JobShop.exe
   ConsoleApplication1.vcxproj -> C:\Users\DELL\Documents\Cours\RO\TP2_RO\Debug\TP2_JobShop.pdb (Partial PDB)

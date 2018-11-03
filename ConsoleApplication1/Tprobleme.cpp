@@ -83,7 +83,7 @@ int Tprobleme::getN()
 	return n;
 }
 
-void Tprobleme::setVecteur(int vec[vmax])
+void Tprobleme::setVecteur(int vec[TAILLEVECMAX])
 {
 	vecteur.setListe(vec);
 }
@@ -103,9 +103,9 @@ int** Tprobleme::getMach()
 {
 	int ** machCopie;
 
-	machCopie = (int**)malloc(sizeof(int*)*nmax);
-	for (int i = 0; i<nmax; i++)
-		machCopie[i] = (int*)malloc(sizeof(int)*mmax);
+	machCopie = (int**)malloc(sizeof(int*)*TAILLENETMMAX);
+	for (int i = 0; i<TAILLENETMMAX; i++)
+		machCopie[i] = (int*)malloc(sizeof(int)*TAILLENETMMAX);
 
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
@@ -121,9 +121,9 @@ int** Tprobleme::getPoids()
 {
 	int ** poidsCopie;
 
-	poidsCopie = (int**)malloc(sizeof(int*)*nmax);
-	for (int i = 0; i<nmax; i++)
-		poidsCopie[i] = (int*)malloc(sizeof(int)*mmax);
+	poidsCopie = (int**)malloc(sizeof(int*)*TAILLENETMMAX);
+	for (int i = 0; i<TAILLENETMMAX; i++)
+		poidsCopie[i] = (int*)malloc(sizeof(int)*TAILLENETMMAX);
 
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {

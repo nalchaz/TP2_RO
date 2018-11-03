@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Tvecteur.h"
+#include "Tprobleme.h"
 #include <cstdlib>
 #include <ctime> 
 
@@ -10,7 +11,7 @@ Tvecteur::Tvecteur()
 
 void Tvecteur::construireV(int n, int m) {
 	
-	int decompteRessources[30][2];
+	int decompteRessources[TAILLENETMMAX][2];
 	int nombreAleatoire = 0;
 	int tailleReelle = n;
 
@@ -63,10 +64,10 @@ int Tvecteur::getTailleVecteur()
 }
 
 
-void Tvecteur::setListe(int vec[vmax])
+void Tvecteur::setListe(int vec[TAILLEVECMAX])
 {
 	int i = 0;
-	while (i < vmax) {
+	while (i < TAILLEVECMAX) {
 		V[i] = vec[i];
 		i++;
 	}

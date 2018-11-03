@@ -4,16 +4,26 @@
 #include "Tsolution.h"
 #include <unordered_map>
 #include <string> 
-#define TAILLEPOP 100
+#include <ctime>
+#define TAILLEPOP 20
 
 class Tpopulation
 {
 
+private:
+	int n;
+	int m;
+	Tprobleme probleme;
+
 public:
-	Tpopulation();
+	Tpopulation(char *);
 	Tvecteur * getListe();
-	void genererPopulation(char *);
+	void genererPopulation();
 	void genererFils();
+
+	void insertionTrie(Tvecteur, int, int, int);
+
+	void ecraserElem(int);
 	
 	void afficherPopulation(ostream&);
 

@@ -43,15 +43,35 @@ void testGenererPopulation() {
 
 	srand(time(NULL)); // initialisation de rand
 
-	Tpopulation population;
-	population.genererPopulation("ft06.txt");
+	Tpopulation population("ft06.txt");
+	population.genererPopulation();
 	population.afficherPopulation(cout);
+}
+
+void testGenererFils() {
+
+	srand(time(NULL)); // initialisation de rand
+
+	Tpopulation population("ft06.txt");
+	population.genererPopulation();
+
+	cout << "POPULATION AVANT L'ALGORITHME GENETIQUE\n" << endl;
+	population.afficherPopulation(cout);
+
+	for (int i = 0; i < 30; i++) {
+		population.genererFils();
+	}
+	cout << "POPULATION APRES L'ALGORITHME GENETIQUE\n" << endl;
+	population.afficherPopulation(cout);
+
+	
 }
 
 int main() //args : array<System::String ^> ^args
 {
 	//testEvaluerEtRechercheLocale();
-	testGenererPopulation();
+	//testGenererPopulation();
+	testGenererFils();
 
 	return 0;
 }

@@ -18,12 +18,12 @@ void Tsolution::prendreValeurs(Tsolution& autreSol)
 
 void Tsolution::evaluer()
 {
-	int T[nmax][mmax];
-	int mOrdre[nmax][mmax];
-	int pOrdre[nmax][mmax];
+	int T[TAILLENETMMAX][TAILLENETMMAX];
+	int mOrdre[TAILLENETMMAX][TAILLENETMMAX];
+	int pOrdre[TAILLENETMMAX][TAILLENETMMAX];
 	int ** P; 
-	int np[mmax];
-	int m[mmax];
+	int np[TAILLENETMMAX];
+	int m[TAILLENETMMAX];
 	int cpt;
 	int piece; // k cf cours
 	int machine;
@@ -34,7 +34,9 @@ void Tsolution::evaluer()
 	int p;
 	int position;
 	int pereCour;
-	int cheminCritique[TAILLEMAX * TAILLEMAX];
+	int cheminCritique[TAILLEVECMAX];
+	int  **mesMachines = probleme.getMach();
+	int numero_machine;
 	/* Initialisation */
 
 	P = probleme.getPoids();
@@ -46,8 +48,7 @@ void Tsolution::evaluer()
 			T[i][j] = cpt;
 			ES[cpt] = 0;							// Init ES a 0
 			PERE[cpt] = -1;							// Init PERE a -1
-			int  **ma_machine = probleme.getMach();
-			int numero_machine = ma_machine[i][j];
+			numero_machine = mesMachines[i][j];
 			pOrdre[i][numero_machine] = P[i][j];	// Init P ordonnee
 			mOrdre[i][probleme.getMach()[i][j]] = j;
 			cpt++;		
@@ -82,7 +83,7 @@ void Tsolution::evaluer()
 				ES[T[piece][np[piece]-1]] = date;
 
 		}
-		machine = probleme.getMach()[piece][np[piece]-1];
+		machine = mesMachines[piece][np[piece]-1];
 
 		if (m[machine] > -1) { // disjonction
 			int piece_sur_la_machine = m[machine];
@@ -130,8 +131,8 @@ void Tsolution::evaluer()
 Tvecteur Tsolution::rechercheLocale() {
 	int i, j, posi, posj, n = 1, cpt = 0;
 	int piecei, piecej;
-	int nbPassagePiece[TAILLEMAX];
-	int posPieceDansBirw[TAILLEMAX];
+	int nbPassagePiece[TAILLENETMMAX];
+	int posPieceDansBirw[TAILLENETMMAX];
 	int * PERE = getPere();
 	int nbMachine = probleme.getM();
 	int tmp;
@@ -260,21 +261,21 @@ int Tsolution::getCoutSolution()
 
 void Tsolution::setCheminCritique(int * chemin)
 {
-	for (int i = 0; i < TAILLEMAX-1; i++) {
+	for (int i = 0; i < TAILLENETMMAX -1; i++) {
 		cheminCritique[i] = chemin[i];
 	}
 }
 
 void Tsolution::setES(int * ESaCopier)
 {
-	for (int i = 0; i < TAILLEMAX-1; i++) {
+	for (int i = 0; i < TAILLENETMMAX -1; i++) {
 		ES[i] = ESaCopier[i];
 	}
 }
 
 void Tsolution::setPere(int * PereACopier)
 {
-	for (int i = 0; i < TAILLEMAX-1; i++) {
+	for (int i = 0; i < TAILLENETMMAX -1; i++) {
 		PERE[i] = PereACopier[i];
 	}
 }

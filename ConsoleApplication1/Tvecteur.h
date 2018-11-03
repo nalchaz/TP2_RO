@@ -1,12 +1,12 @@
 #pragma once
 #include <string>
-const int vmax = 30 * 30;
+#define TAILLEVECMAX 900
 
 class Tvecteur
 {
 private:
 
-	int V[vmax];
+	int V[TAILLEVECMAX];
 	int tailleVecteur;
 
 public:
@@ -15,7 +15,7 @@ public:
 	int trouveriEmeApparition(int, int);
 	int * getVecteur();
 	int getTailleVecteur();
-	void setListe(int[vmax]);
+	void setListe(int[TAILLEVECMAX]);
 	std::string toString();
 };
 

@@ -1,15 +1,14 @@
 #pragma once
 #include "Tprobleme.h"
 #include <iostream>
-#define TAILLEMAX 30
 using namespace std;
 
 class Tsolution
 {
 private:
-	int ES[TAILLEMAX * TAILLEMAX];
-	int PERE[TAILLEMAX * TAILLEMAX];
-	int cheminCritique[TAILLEMAX * TAILLEMAX];
+	int ES[TAILLEVECMAX];
+	int PERE[TAILLEVECMAX];
+	int cheminCritique[TAILLEVECMAX];
 	int coutSolution;
 
 	Tprobleme probleme;
