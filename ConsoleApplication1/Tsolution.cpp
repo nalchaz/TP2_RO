@@ -83,7 +83,7 @@ void Tsolution::evaluer()
 				ES[T[piece][np[piece]-1]] = date;
 
 		}
-		machine = mesMachines[piece][np[piece]-1];
+		machine = probleme.getMach(piece,np[piece]-1);
 
 		if (m[machine] > -1) { // disjonction
 			int piece_sur_la_machine = m[machine];

@@ -32,6 +32,7 @@ public:
 
 	int * getVecteur();
 	int ** getMach();
+	int getMach(int, int);
 	int ** getPoids();
 	Tvecteur getVecteurObj();
 };

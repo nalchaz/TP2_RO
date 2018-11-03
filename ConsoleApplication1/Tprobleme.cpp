@@ -117,6 +117,10 @@ int** Tprobleme::getMach()
 	return machCopie;
 }
 
+int Tprobleme::getMach(int i, int j) {
+	return mach[i][j];
+}
+
 int** Tprobleme::getPoids()
 {
 	int ** poidsCopie;

@@ -99,7 +99,7 @@ void Tpopulation::genererFils() {
 	}
 
 	vecFils.setListe(vecFilsBrut);
-
+	vecFils.setTaille(tailleVec);
 	/* Evaluation et recherche locale */
 	
 	probleme.setVecteur(vecFils);
@@ -115,13 +115,13 @@ void Tpopulation::genererFils() {
 			ecraserElem(rand1);
 		else
 			ecraserElem(rand2);
-		insertionTrie(vecFils, S.getCoutSolution(), 0, TAILLEPOP);
+		insertionTrie(vecFils, S.getCoutSolution(), 0, TAILLEPOP-1);
 	}
 	
 }
 
 /** Insertion par dichotomie **/
-void Tpopulation::insertionTrie(Tvecteur vec, int coutSol, int debut, int fin) {
+void Tpopulation::insertionTrie(Tvecteur& vec, int coutSol, int debut, int fin) {
 
 	int milieu;
 	int debutDicho = debut;
@@ -146,7 +146,7 @@ void Tpopulation::insertionTrie(Tvecteur vec, int coutSol, int debut, int fin) {
 void Tpopulation::ecraserElem(int pos) {
 
 	//décalage à gauche
-	for (int k = pos; k < TAILLEPOP; k++) {
+	for (int k = pos; k < TAILLEPOP-1; k++) {
 		coutListe[k] = coutListe[k + 1];
 		liste[k] = liste[k + 1];
 	}

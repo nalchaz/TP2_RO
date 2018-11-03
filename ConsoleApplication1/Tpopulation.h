@@ -21,8 +21,7 @@ public:
 	void genererPopulation();
 	void genererFils();
 
-	void insertionTrie(Tvecteur, int, int, int);
-
+	void insertionTrie(Tvecteur&, int, int, int);
 	void ecraserElem(int);
 	
 	void afficherPopulation(ostream&);

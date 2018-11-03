@@ -73,6 +73,11 @@ void Tvecteur::setListe(int vec[TAILLEVECMAX])
 	}
 }
 
+void Tvecteur::setTaille(int taille)
+{
+	tailleVecteur = taille;
+}
+
 std::string Tvecteur::toString()
 {
 	std::string tmp = "";

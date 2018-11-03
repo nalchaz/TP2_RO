@@ -58,10 +58,10 @@ void testGenererFils() {
 	cout << "POPULATION AVANT L'ALGORITHME GENETIQUE\n" << endl;
 	population.afficherPopulation(cout);
 
-	for (int i = 0; i < 30; i++) {
+	for (int i = 0; i < 3; i++) {
 		population.genererFils();
 	}
-	cout << "POPULATION APRES L'ALGORITHME GENETIQUE\n" << endl;
+	cout << "\n\nPOPULATION APRES L'ALGORITHME GENETIQUE\n" << endl;
 	population.afficherPopulation(cout);
 
 	

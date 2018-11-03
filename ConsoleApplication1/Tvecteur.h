@@ -16,6 +16,7 @@ public:
 	int * getVecteur();
 	int getTailleVecteur();
 	void setListe(int[TAILLEVECMAX]);
+	void setTaille(int);
 	std::string toString();
 };
 
