@@ -143,7 +143,6 @@
     <Text Include="ReadMe.txt" />
     <Text Include="test.txt" />
     <Text Include="la01.txt" />
-    <Text Include="la11.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">

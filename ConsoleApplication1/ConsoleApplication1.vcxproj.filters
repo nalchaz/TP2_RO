@@ -25,9 +25,6 @@
     <Text Include="la01.txt">
       <Filter>Fichiers de ressources</Filter>
     </Text>
-    <Text Include="la11.txt">
-      <Filter>Fichiers de ressources</Filter>
-    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -87,5 +84,10 @@
     <Image Include="app.ico">
       <Filter>Fichiers de ressources</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MyForm.resx">
+      <Filter>Fichiers de ressources</Filter>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

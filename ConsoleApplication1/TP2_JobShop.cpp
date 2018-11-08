@@ -68,6 +68,7 @@ void testGenererFils() {
 	
 }
 
+/*
 int main() 
 {
 	//testEvaluerEtRechercheLocale();
@@ -75,15 +76,12 @@ int main()
 	testGenererFils();
 
 	return 0;
-}
+}*/
 
-/*   POUR L'IHM, DUR A FAIRE FONCTIONNER
+//   POUR L'IHM, DUR A FAIRE FONCTIONNER
 
 int main(cli::array<System::String ^> ^args)
 {
-	//testEvaluerEtRechercheLocale();
-	//testGenererPopulation();
-	//testGenererFils();
 
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
@@ -94,4 +92,3 @@ int main(cli::array<System::String ^> ^args)
 
 	return 0;
 }
-*/

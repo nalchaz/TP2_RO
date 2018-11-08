@@ -5,6 +5,10 @@ Tpopulation::Tpopulation(char * nomFic):probleme(Tprobleme(nomFic)){
 	probleme.lireFichier();
 }
 
+Tpopulation::Tpopulation(string nomFic) : probleme(Tprobleme(nomFic.c_str())) {
+	probleme.lireFichier();
+}
+
 void Tpopulation::genererPopulation()
 {
 
@@ -165,6 +169,11 @@ string Tpopulation::toString() {
 Tvecteur * Tpopulation::getListe()
 {
 	return liste;
+}
+
+int * Tpopulation::getListeCout()
+{
+	return coutListe;
 }
 
 /* testerDouble

@@ -6,7 +6,7 @@
 #include <sstream>
 #include <string> 
 #include <ctime>
-#define TAILLEPOP 20
+#define TAILLEPOP 50
 
 class Tpopulation
 {
@@ -18,7 +18,10 @@ private:
 
 public:
 	Tpopulation(char *);
+	Tpopulation(string);
+
 	Tvecteur * getListe();
+	int * getListeCout();
 	void genererPopulation();
 	void genererFils();
 
