@@ -3,6 +3,10 @@
 
 using namespace System;
 
+Tprobleme::Tprobleme()
+{
+}
+
 Tprobleme::Tprobleme(string nomFic):nomFic(nomFic)
 {
 	Tvecteur vec;

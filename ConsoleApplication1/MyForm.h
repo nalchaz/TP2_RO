@@ -84,10 +84,10 @@ namespace ConsoleApplication1 {
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(36, 109);
-			this->textBox1->Margin = System::Windows::Forms::Padding(1);
+			this->textBox1->Location = System::Drawing::Point(96, 260);
+			this->textBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(118, 20);
+			this->textBox1->Size = System::Drawing::Size(308, 38);
 			this->textBox1->TabIndex = 2;
 			this->textBox1->Text = L"ft06.txt";
 			this->textBox1->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
@@ -96,19 +96,18 @@ namespace ConsoleApplication1 {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(47, 88);
-			this->label1->Margin = System::Windows::Forms::Padding(1, 0, 1, 0);
+			this->label1->Location = System::Drawing::Point(125, 210);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(85, 13);
+			this->label1->Size = System::Drawing::Size(230, 32);
 			this->label1->TabIndex = 1;
 			this->label1->Text = L"Fichier à utiliser :";
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(10, 21);
-			this->button1->Margin = System::Windows::Forms::Padding(1);
+			this->button1->Location = System::Drawing::Point(27, 50);
+			this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(165, 55);
+			this->button1->Size = System::Drawing::Size(440, 131);
 			this->button1->TabIndex = 0;
 			this->button1->Text = L"Lancer l\'algorithme génétique";
 			this->button1->UseVisualStyleBackColor = true;
@@ -117,38 +116,37 @@ namespace ConsoleApplication1 {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(37, 140);
-			this->label2->Margin = System::Windows::Forms::Padding(1, 0, 1, 0);
+			this->label2->Location = System::Drawing::Point(90, 333);
 			this->label2->Name = L"label2";
 			this->label2->RightToLeft = System::Windows::Forms::RightToLeft::No;
-			this->label2->Size = System::Drawing::Size(109, 13);
+			this->label2->Size = System::Drawing::Size(154, 32);
 			this->label2->TabIndex = 3;
-			this->label2->Text = L"Nombre d\'evaluations";
+			this->label2->Text = L"Nombre de";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(47, 153);
-			this->label3->Margin = System::Windows::Forms::Padding(1, 0, 1, 0);
+			this->label3->Location = System::Drawing::Point(240, 333);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(93, 13);
+			this->label3->Size = System::Drawing::Size(180, 32);
 			this->label3->TabIndex = 4;
-			this->label3->Text = L"de chromosomes :";
+			this->label3->Text = L"générations :";
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(36, 179);
-			this->textBox2->Margin = System::Windows::Forms::Padding(1);
+			this->textBox2->Location = System::Drawing::Point(96, 390);
+			this->textBox2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(118, 20);
+			this->textBox2->Size = System::Drawing::Size(308, 38);
 			this->textBox2->TabIndex = 5;
+			this->textBox2->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// richTextBox1
 			// 
-			this->richTextBox1->Location = System::Drawing::Point(188, 32);
-			this->richTextBox1->Margin = System::Windows::Forms::Padding(1);
+			this->richTextBox1->Location = System::Drawing::Point(501, 76);
+			this->richTextBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->richTextBox1->Name = L"richTextBox1";
-			this->richTextBox1->Size = System::Drawing::Size(415, 450);
+			this->richTextBox1->Size = System::Drawing::Size(1100, 1068);
 			this->richTextBox1->TabIndex = 6;
 			this->richTextBox1->Text = L"";
 			// 
@@ -164,8 +162,8 @@ namespace ConsoleApplication1 {
 			legend1->Docking = System::Windows::Forms::DataVisualization::Charting::Docking::Bottom;
 			legend1->Name = L"Legend1";
 			this->chart1->Legends->Add(legend1);
-			this->chart1->Location = System::Drawing::Point(629, 32);
-			this->chart1->Margin = System::Windows::Forms::Padding(1);
+			this->chart1->Location = System::Drawing::Point(1677, 76);
+			this->chart1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->chart1->Name = L"chart1";
 			series1->ChartArea = L"ChartArea1";
 			series1->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::StepLine;
@@ -178,7 +176,7 @@ namespace ConsoleApplication1 {
 			series2->Name = L"Population de base";
 			this->chart1->Series->Add(series1);
 			this->chart1->Series->Add(series2);
-			this->chart1->Size = System::Drawing::Size(502, 450);
+			this->chart1->Size = System::Drawing::Size(1339, 1073);
 			this->chart1->TabIndex = 7;
 			title1->Name = L"Title1";
 			title1->Text = L"Coût pour chaque élément de la population";
@@ -187,9 +185,9 @@ namespace ConsoleApplication1 {
 			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(16, 31);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1160, 517);
+			this->ClientSize = System::Drawing::Size(3093, 1233);
 			this->Controls->Add(this->chart1);
 			this->Controls->Add(this->richTextBox1);
 			this->Controls->Add(this->textBox2);
@@ -198,7 +196,7 @@ namespace ConsoleApplication1 {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->textBox1);
-			this->Margin = System::Windows::Forms::Padding(1);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"MyForm";
 			this->Text = L"Algorithme Genetique";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->EndInit();
@@ -233,7 +231,7 @@ namespace ConsoleApplication1 {
 	}
 
 	for (int i = 0; i < nbEval; i++) {
-		population.genererFils();
+		population.generationSuivante();
 	}
 	this->richTextBox1->Text += "\n\nPOPULATION APRES L'ALGORITHME GENETIQUE\n\n";
 	this->richTextBox1->Text += context.marshal_as<String^>(population.toString());

@@ -15,15 +15,21 @@ private:
 	int n;
 	int m;
 	Tprobleme probleme;
+	int coutListe[TAILLEPOP];
+	Tvecteur liste[TAILLEPOP];
+	std::unordered_map<std::string, int> tableHash;
 
 public:
+	Tpopulation();
 	Tpopulation(char *);
 	Tpopulation(string);
 
 	Tvecteur * getListe();
 	int * getListeCout();
+	void hashInsert(Tvecteur);
 	void genererPopulation();
-	void genererFils();
+	Tsolution genererFils();
+	void generationSuivante(); //Passe a la generation k+1
 
 	void insertionTrie(Tvecteur&, int, int, int);
 	void ecraserElem(int);
@@ -33,12 +39,7 @@ public:
 	string toString();
 
 	bool testerDouble(Tvecteur);
-
-
-private:
-	int coutListe[TAILLEPOP];
-	Tvecteur liste[TAILLEPOP];
-	std::unordered_map<std::string, int> tableHash;
+	
 
 };
 

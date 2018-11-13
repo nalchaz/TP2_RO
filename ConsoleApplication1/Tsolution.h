@@ -17,6 +17,7 @@ private:
 	Tprobleme probleme;
 
 public:
+	Tsolution();
 	Tsolution(Tprobleme);
 	void prendreValeurs(Tsolution&);
 	void evaluer();
@@ -30,6 +31,7 @@ public:
 	int getCoutSolution();
 	Tprobleme getProbleme();
 
+	void setProbleme(Tprobleme);
 	void setCheminCritique(int *);
 	void setES(int *);
 	void setPere(int *);

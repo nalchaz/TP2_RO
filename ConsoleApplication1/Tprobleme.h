@@ -22,6 +22,7 @@ private:
 	string nomFic;
 
 public:
+	Tprobleme();
 	Tprobleme(string);
 	void lireFichier();
 	void construireVecteur();

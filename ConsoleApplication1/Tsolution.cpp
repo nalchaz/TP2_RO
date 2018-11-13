@@ -1,6 +1,10 @@
 #include "stdafx.h"
 #include "Tsolution.h"
 
+Tsolution::Tsolution()
+{
+}
+
 Tsolution::Tsolution(Tprobleme prob):probleme(prob)
 {
 }
@@ -265,6 +269,11 @@ Tprobleme Tsolution::getProbleme()
 int Tsolution::getCoutSolution()
 {
 	return coutSolution;
+}
+
+void Tsolution::setProbleme(Tprobleme prob)
+{
+	probleme = prob;
 }
 
 void Tsolution::setCheminCritique(int * chemin)

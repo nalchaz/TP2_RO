@@ -1,7 +1,11 @@
 #include "stdafx.h"
 #include "Tpopulation.h"
 
-Tpopulation::Tpopulation(char * nomFic):probleme(Tprobleme(nomFic)){
+Tpopulation::Tpopulation()
+{
+}
+
+Tpopulation::Tpopulation(char * nomFic) :probleme(Tprobleme(nomFic)) {
 	probleme.lireFichier();
 }
 
@@ -48,16 +52,17 @@ void Tpopulation::genererPopulation()
 		vecteur = S.rechercheLocale();
 		coutTmp = S.getCoutSolution();
 
-		tableHash.insert({vecteur.toString(), 1}); //Insertion dasn la table de hachage
+		tableHash.insert({ vecteur.toString(), 1 }); //Insertion dasn la table de hachage
 
 		//Insertion dans la population
 		insertionTrie(vecteur, coutTmp, 0, i);
 	}
 }
 
-void Tpopulation::genererFils() {
+Tsolution Tpopulation::genererFils() {
 	Tvecteur vecFils;
 	Tvecteur parent1, parent2;
+	Tsolution S;
 
 	int vecFilsBrut[TAILLEVECMAX];
 	int *vecParent1, *vecParent2;
@@ -68,55 +73,104 @@ void Tpopulation::genererFils() {
 
 	int decompteRessources[TAILLENETMMAX]; //Pour suivre le nombre de passage par machine 
 
-	for (int i = 0; i < n; i++) {
-		decompteRessources[i] = m;
+	do {
+		for (int i = 0; i < n; i++) {
+			decompteRessources[i] = m;
+		}
+
+
+		rand1 = rand() % (int)(TAILLEPOP - (TAILLEPOP/100.0)*10); //Nombre aleatoire entre 0 et 90% de TAILLEPOP
+		rand2 = rand() % (int)((TAILLEPOP / 100.0) * 10) + (int)((TAILLEPOP / 100.0) * 90); //Nombre aleatoire entre 90% de TAILLEPOP et TAILLEPOP
+
+		randpos = rand() % n*m; //Nombre aleatoire entre 0 et la taille du vecteur de Bierwirth
+
+		parent1 = liste[rand1];
+		parent2 = liste[rand2];
+		vecParent1 = parent1.getVecteur();
+		vecParent2 = parent2.getVecteur();
+		tailleVec = parent2.getTailleVecteur();
+
+		for (cpt = 0; cpt < randpos; cpt++) { //Genetique du parent 1
+			vecFilsBrut[cpt] = vecParent1[cpt];
+			decompteRessources[vecParent1[cpt]]--;
+		}
+
+		for (int k = cpt; cpt < tailleVec; k = (k + 1) % tailleVec) { //Genetique du parent 2
+			while (decompteRessources[vecParent2[k]] == 0)
+				k = (k + 1) % tailleVec;
+			vecFilsBrut[cpt] = vecParent2[k];
+			decompteRessources[vecParent2[k]]--;
+			cpt++;
+		}
+
+		vecFils.setListe(vecFilsBrut);
+		vecFils.setTaille(tailleVec);
+		/* Evaluation et recherche locale */
+
+		probleme.setVecteur(vecFils);
+		S.setProbleme(probleme);
+		S.evaluer();
+		vecFils = S.rechercheLocale();
+
+		/* Test d'ajout dans la population */
+	} while (testerDouble(vecFils));
+	return S;
+
+}
+
+void Tpopulation::generationSuivante()
+{
+	Tpopulation popFils;
+	Tsolution filsCour;
+	int * listeCout;
+	Tvecteur * listeVec;
+
+	int listeCoutFusion[TAILLEPOP];
+	Tvecteur listeVecFusion[TAILLEPOP];
+	int i = 0, j = 0, cpt = 0;
+
+	filsCour = genererFils();
+	popFils.coutListe[0] = filsCour.getCoutSolution();
+	popFils.liste[0] = filsCour.getProbleme().getVecteurObj();
+	popFils.hashInsert(filsCour.getProbleme().getVecteurObj());
+
+	for (int i = 1; i < TAILLEPOP / 2; i++) {
+		do {
+			filsCour = genererFils();
+		} while (popFils.testerDouble(filsCour.getProbleme().getVecteurObj()));
+		popFils.hashInsert(filsCour.getProbleme().getVecteurObj());
+		popFils.insertionTrie(filsCour.getProbleme().getVecteurObj(), filsCour.getCoutSolution(), 0, i);
 	}
+	listeVec = popFils.getListe();
+	listeCout = popFils.getListeCout();
 
-
-	rand1 = rand() % (TAILLEPOP - 10); //Nombre aleatoire entre 0 et TAILLEPOP-10
-	rand2 = rand() % 10 + (TAILLEPOP-10); //Nombre aleatoire entre TAILLEPOP-10 et TAILLEPOP
-
-	randpos = rand() % n*m; //Nombre aleatoire entre 0 et la taille du vecteur de Bierwirth
-
-	parent1 = liste[rand1];
-	parent2 = liste[rand2];
-	vecParent1 = parent1.getVecteur();
-	vecParent2 = parent2.getVecteur();
-	tailleVec = parent2.getTailleVecteur();
-
-	for (cpt = 0; cpt < randpos; cpt++) { //Genetique du parent 1
-		vecFilsBrut[cpt] = vecParent1[cpt]; 
-		decompteRessources[vecParent1[cpt]]--; 
-	}
-
-	for (int k = cpt; cpt < tailleVec; k = (k+1) % tailleVec) { //Genetique du parent 2
-		while (decompteRessources[vecParent2[k]] == 0)
-			k = (k + 1) % tailleVec;
-		vecFilsBrut[cpt] = vecParent2[k]; 
-		decompteRessources[vecParent2[k]]--;
-		cpt++;
-	}
-
-	vecFils.setListe(vecFilsBrut);
-	vecFils.setTaille(tailleVec);
-	/* Evaluation et recherche locale */
-	
-	probleme.setVecteur(vecFils);
-	Tsolution S(probleme);
-	S.evaluer();
-	vecFils = S.rechercheLocale();
-
-	/* Test d'ajout dans la population */
-
-	if (!testerDouble(vecFils)) { //Si il n'existe pas deja
-		randpos = rand() % 1;
-		if (randpos == 1)
-			ecraserElem(rand1);
+	while(j < TAILLEPOP / 2 && i < TAILLEPOP) { // On insere les fils dans la population
+		if (listeCout[i] < coutListe[j])
+		{
+			listeCoutFusion[cpt] = listeCout[i];
+			listeVecFusion[cpt] = listeVec[i];
+			cpt++;
+			i++;
+		}
 		else
-			ecraserElem(rand2);
-		insertionTrie(vecFils, S.getCoutSolution(), 0, TAILLEPOP-1);
+		{
+			listeCoutFusion[cpt] = coutListe[j];
+			listeVecFusion[cpt] = liste[j];
+			cpt++;
+			j++;
+		}
 	}
-	
+	while (cpt < TAILLEPOP) { // On insere le reste de la population
+		listeCoutFusion[cpt] = coutListe[j];
+		listeVecFusion[cpt] = liste[j];
+		cpt++;
+		j++;
+	}
+	for (int i = 0; i < TAILLEPOP; i++) {
+		coutListe[i] = listeCoutFusion[i];
+		liste[i] = listeVecFusion[i];
+	}
+
 }
 
 /** Insertion par dichotomie **/
@@ -145,7 +199,7 @@ void Tpopulation::insertionTrie(Tvecteur& vec, int coutSol, int debut, int fin) 
 void Tpopulation::ecraserElem(int pos) {
 
 	//décalage à gauche
-	for (int k = pos; k < TAILLEPOP-1; k++) {
+	for (int k = pos; k < TAILLEPOP - 1; k++) {
 		coutListe[k] = coutListe[k + 1];
 		liste[k] = liste[k + 1];
 	}
@@ -176,6 +230,9 @@ int * Tpopulation::getListeCout()
 	return coutListe;
 }
 
+void Tpopulation::hashInsert(Tvecteur vec) {
+	tableHash.insert({ vec.toString(), 1 });
+}
 /* testerDouble
 @return : bool, true si il existe deja dans la population
 				false sinon
